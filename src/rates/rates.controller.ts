@@ -5,9 +5,9 @@ import { RatesService } from './rates.service';
 export class RatesController {
   constructor(private readonly ratesService: RatesService) {}
 
+  // TODO Swagger
   @Get('/rates_ascending')
   getAscendingRates(): Promise<any> {
     return this.ratesService.getAscendingRates();
   }
-
 }
