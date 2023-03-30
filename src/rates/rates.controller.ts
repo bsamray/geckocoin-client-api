@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { RatesResponse } from './dto/rate.dto';
 import { RatesService } from './rates.service';
 
 @Controller()
@@ -7,7 +8,7 @@ export class RatesController {
 
   // TODO Swagger
   @Get('/rates_ascending')
-  getAscendingRates(): Promise<any> {
+  getAscendingRates(): Promise<RatesResponse> {
     return this.ratesService.getAscendingRates();
   }
 }
