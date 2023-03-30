@@ -1,6 +1,6 @@
 import { ApiOperation } from '@nestjs/swagger';
 import { Controller, Get } from '@nestjs/common';
-import { RatesResponse } from './dto/rate.dto';
+import { ExchangeRatesDto } from './dto/rate.dto';
 import { RatesService } from './rates.service';
 
 @Controller()
@@ -9,7 +9,13 @@ export class RatesController {
 
   @ApiOperation({ summary: 'Get exchange rates in ascending order' })
   @Get('/rates_ascending')
-  getAscendingRates(): Promise<RatesResponse> {
+  getAscendingRates(): Promise<ExchangeRatesDto> {
     return this.ratesService.getAscendingRates();
+  }
+
+  @ApiOperation({ summary: 'Get exchange rates in ascending order' })
+  @Get('/rates_descending')
+  getDescendingRates(): Promise<ExchangeRatesDto> {
+    return this.ratesService.getDescendingRates();
   }
 }

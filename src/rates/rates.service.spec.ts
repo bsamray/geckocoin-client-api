@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { RatesService } from './rates.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import axios from 'axios';
-import { RatesResponse } from './dto/rate.dto';
+import { ExchangeRatesDto, RatesResponse } from './dto/rate.dto';
 
 describe('RatesService', () => {
   let service: RatesService;
@@ -15,24 +15,6 @@ describe('RatesService', () => {
         name: 'Bitcoin',
         unit: 'BTC',
         value: 15.743,
-        type: 'crypto',
-      },
-      eth: {
-        name: 'Ether',
-        unit: 'ETH',
-        value: 15.742,
-        type: 'crypto',
-      },
-      ltc: {
-        name: 'Litecoin',
-        unit: 'LTC',
-        value: 317.819,
-        type: 'crypto',
-      },
-      bch: {
-        name: 'Bitcoin Cash',
-        unit: 'BCH',
-        value: 233.553,
         type: 'crypto',
       },
     },
@@ -60,7 +42,7 @@ describe('RatesService', () => {
   });
 
   describe('fetch ascending exchange rates from API', () => {
-    it('should call API with the correct input and get correct data ', async () => {
+    it('should call API with the correct input and get ascending order', async () => {
       const axiosResponse: AxiosResponse = {
         data: apiResponsePayload,
         status: 200,
@@ -68,34 +50,14 @@ describe('RatesService', () => {
         headers: {},
         config: undefined,
       };
-      const expectedOutcome: RatesResponse = {
-        rates: {
-          eth: {
-            name: 'Ether',
-            unit: 'ETH',
-            value: 15.742,
-            type: 'crypto',
-          },
-          btc: {
-            name: 'Bitcoin',
-            unit: 'BTC',
-            value: 15.743,
-            type: 'crypto',
-          },
-          bch: {
-            name: 'Bitcoin Cash',
-            unit: 'BCH',
-            value: 233.553,
-            type: 'crypto',
-          },
-          ltc: {
-            name: 'Litecoin',
-            unit: 'LTC',
-            value: 317.819,
-            type: 'crypto',
-          },
+      const expectedOutcome: ExchangeRatesDto = [
+        {
+          name: 'Bitcoin',
+          unit: 'BTC',
+          value: 15.743,
+          type: 'crypto',
         },
-      };
+      ];
       jest.spyOn(httpService, 'get').mockReturnValueOnce(of(axiosResponse));
 
       const result = await service.getAscendingRates();
@@ -109,7 +71,7 @@ describe('RatesService', () => {
   });
 
   describe('fetch descending exchange rates from API', () => {
-    it('should call API with the correct input and get correct data ', async () => {
+    it('should call API with the correct input and get descending order', async () => {
       const axiosResponse: AxiosResponse = {
         data: apiResponsePayload,
         status: 200,
@@ -117,34 +79,14 @@ describe('RatesService', () => {
         headers: {},
         config: undefined,
       };
-      const expectedOutcome: RatesResponse = {
-        rates: {
-          ltc: {
-            name: 'Litecoin',
-            unit: 'LTC',
-            value: 317.819,
-            type: 'crypto',
-          },
-          bch: {
-            name: 'Bitcoin Cash',
-            unit: 'BCH',
-            value: 233.553,
-            type: 'crypto',
-          },
-          btc: {
-            name: 'Bitcoin',
-            unit: 'BTC',
-            value: 15.743,
-            type: 'crypto',
-          },
-          eth: {
-            name: 'Ether',
-            unit: 'ETH',
-            value: 15.742,
-            type: 'crypto',
-          },
+      const expectedOutcome: ExchangeRatesDto = [
+        {
+          name: 'Bitcoin',
+          unit: 'BTC',
+          value: 15.743,
+          type: 'crypto',
         },
-      };
+      ];
       jest.spyOn(httpService, 'get').mockReturnValueOnce(of(axiosResponse));
 
       const result = await service.getDescendingRates();

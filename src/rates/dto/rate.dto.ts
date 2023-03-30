@@ -5,10 +5,12 @@ type CurrencyRate = {
   type: string;
 };
 
-type CurrencyRates = {
+export type CurrencyRates = {
   [key: string]: CurrencyRate;
 };
 
 export type RatesResponse = {
   rates: CurrencyRates;
 };
+
+export type ExchangeRatesDto = Array<CurrencyRate>;

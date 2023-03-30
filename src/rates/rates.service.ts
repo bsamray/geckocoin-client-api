@@ -1,18 +1,25 @@
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { RatesResponse } from './dto/rate.dto';
+import { RateMappingService } from './util/rates.mapping.util';
+import { ExchangeRatesDto, RatesResponse } from './dto/rate.dto';
 
 @Injectable()
 export class RatesService {
   constructor(private readonly httpService: HttpService) {}
 
-  getAscendingRates(): Promise<RatesResponse> {
-    return this.getRates();
+  async getAscendingRates(): Promise<ExchangeRatesDto> {
+    const currencyRates = await this.getRates();
+    const exchangeRatesDto =
+      RateMappingService.mapRatesResponseToClientDtoAscending(currencyRates);
+    return Promise.resolve(exchangeRatesDto);
   }
 
-  getDescendingRates(): Promise<RatesResponse> {
-    return this.getRates();
+  async getDescendingRates(): Promise<ExchangeRatesDto> {
+    const currencyRates = await this.getRates();
+    const exchangeRatesDto =
+      RateMappingService.mapRatesResponseToClientDtoDescending(currencyRates);
+    return Promise.resolve(exchangeRatesDto);
   }
 
   private async getRates(): Promise<RatesResponse> {
