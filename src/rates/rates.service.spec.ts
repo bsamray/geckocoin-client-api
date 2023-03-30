@@ -10,32 +10,32 @@ describe('RatesService', () => {
   let service: RatesService;
   let httpService: HttpService;
   const apiResponsePayload: RatesResponse = {
-    "rates": {
-        "btc": {
-            "name": "Bitcoin",
-            "unit": "BTC",
-            "value": 15.743,
-            "type": "crypto"
-        },
-        "eth": {
-            "name": "Ether",
-            "unit": "ETH",
-            "value": 15.742,
-            "type": "crypto"
-        },
-        "ltc": {
-            "name": "Litecoin",
-            "unit": "LTC",
-            "value": 317.819,
-            "type": "crypto"
-        },
-        "bch": {
-            "name": "Bitcoin Cash",
-            "unit": "BCH",
-            "value": 233.553,
-            "type": "crypto"
-        }
-    }
+    rates: {
+      btc: {
+        name: 'Bitcoin',
+        unit: 'BTC',
+        value: 15.743,
+        type: 'crypto',
+      },
+      eth: {
+        name: 'Ether',
+        unit: 'ETH',
+        value: 15.742,
+        type: 'crypto',
+      },
+      ltc: {
+        name: 'Litecoin',
+        unit: 'LTC',
+        value: 317.819,
+        type: 'crypto',
+      },
+      bch: {
+        name: 'Bitcoin Cash',
+        unit: 'BCH',
+        value: 233.553,
+        type: 'crypto',
+      },
+    },
   };
   const AXIOS_INSTANCE_TOKEN = 'AXIOS_INSTANCE_TOKEN';
 
@@ -69,32 +69,32 @@ describe('RatesService', () => {
         config: undefined,
       };
       const expectedOutcome: RatesResponse = {
-          "rates": {
-            "eth": {
-              "name": "Ether",
-              "unit": "ETH",
-              "value": 15.742,
-              "type": "crypto"
-            },
-            "btc": {
-              "name": "Bitcoin",
-              "unit": "BTC",
-              "value": 15.743,
-              "type": "crypto"
-            },
-            "bch": {
-              "name": "Bitcoin Cash",
-              "unit": "BCH",
-              "value": 233.553,
-              "type": "crypto"
-            },
-            "ltc": {
-              "name": "Litecoin",
-              "unit": "LTC",
-              "value": 317.819,
-              "type": "crypto"
-            }
-        }
+        rates: {
+          eth: {
+            name: 'Ether',
+            unit: 'ETH',
+            value: 15.742,
+            type: 'crypto',
+          },
+          btc: {
+            name: 'Bitcoin',
+            unit: 'BTC',
+            value: 15.743,
+            type: 'crypto',
+          },
+          bch: {
+            name: 'Bitcoin Cash',
+            unit: 'BCH',
+            value: 233.553,
+            type: 'crypto',
+          },
+          ltc: {
+            name: 'Litecoin',
+            unit: 'LTC',
+            value: 317.819,
+            type: 'crypto',
+          },
+        },
       };
       jest.spyOn(httpService, 'get').mockReturnValueOnce(of(axiosResponse));
 
@@ -108,7 +108,7 @@ describe('RatesService', () => {
     });
   });
 
-    describe('fetch descending exchange rates from API', () => {
+  describe('fetch descending exchange rates from API', () => {
     it('should call API with the correct input and get correct data ', async () => {
       const axiosResponse: AxiosResponse = {
         data: apiResponsePayload,
@@ -118,32 +118,32 @@ describe('RatesService', () => {
         config: undefined,
       };
       const expectedOutcome: RatesResponse = {
-          "rates": {
-            "ltc": {
-              "name": "Litecoin",
-              "unit": "LTC",
-              "value": 317.819,
-              "type": "crypto"
-            },
-            "bch": {
-              "name": "Bitcoin Cash",
-              "unit": "BCH",
-              "value": 233.553,
-              "type": "crypto"
-            },
-            "btc": {
-              "name": "Bitcoin",
-              "unit": "BTC",
-              "value": 15.743,
-              "type": "crypto"
-            },
-            "eth": {
-              "name": "Ether",
-              "unit": "ETH",
-              "value": 15.742,
-              "type": "crypto"
-            }
-        }
+        rates: {
+          ltc: {
+            name: 'Litecoin',
+            unit: 'LTC',
+            value: 317.819,
+            type: 'crypto',
+          },
+          bch: {
+            name: 'Bitcoin Cash',
+            unit: 'BCH',
+            value: 233.553,
+            type: 'crypto',
+          },
+          btc: {
+            name: 'Bitcoin',
+            unit: 'BTC',
+            value: 15.743,
+            type: 'crypto',
+          },
+          eth: {
+            name: 'Ether',
+            unit: 'ETH',
+            value: 15.742,
+            type: 'crypto',
+          },
+        },
       };
       jest.spyOn(httpService, 'get').mockReturnValueOnce(of(axiosResponse));
 

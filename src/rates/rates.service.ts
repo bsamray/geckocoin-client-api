@@ -1,5 +1,4 @@
-import { firstValueFrom, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { RatesResponse } from './dto/rate.dto';
@@ -13,7 +12,7 @@ export class RatesService {
   }
 
   getDescendingRates(): Promise<RatesResponse> {
-      return this.getRates();
+    return this.getRates();
   }
 
   private async getRates(): Promise<RatesResponse> {

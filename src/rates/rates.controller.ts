@@ -12,5 +12,4 @@ export class RatesController {
   getAscendingRates(): Promise<RatesResponse> {
     return this.ratesService.getAscendingRates();
   }
-  
 }
