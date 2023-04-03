@@ -8,11 +8,6 @@ export class StatsController {
   constructor(private readonly statsService: StatsService) {}
 
   @ApiOperation({ summary: 'Get Coin stats for last 30 days' })
-  @ApiResponse({
-    status: 404,
-    description: 'Not Found',
-    type: NotFoundException,
-  })
   @Get(':id')
   getCoinStats(@Param('id') coinId: string): Promise<CoinStatsDto> {
     return this.statsService.getHistoricalStats(coinId);
