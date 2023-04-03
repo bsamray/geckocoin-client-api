@@ -1,7 +1,7 @@
-import { RateMappingService } from './rates.mapping.util';
+import { RatesMappingUtil } from './rates.mapping.util';
 import { RatesResponse, ExchangeRatesDto } from '../dto/rate.dto';
 
-describe('RateMappingService', () => {
+describe('RatesMappingUtil', () => {
   const ratesResponse: RatesResponse = {
     rates: {
       btc: {
@@ -34,7 +34,7 @@ describe('RateMappingService', () => {
   describe('mapRatesResponseToClientDtoAscending', () => {
     it('should return an array of CurrencyRates sorted in ascending order', () => {
       const result: ExchangeRatesDto =
-        RateMappingService.mapRatesResponseToClientDtoAscending(ratesResponse);
+        RatesMappingUtil.mapRatesResponseToClientDtoAscending(ratesResponse);
 
       expect(result.length).toBe(4);
       expect(result[0]).toStrictEqual({
@@ -64,10 +64,10 @@ describe('RateMappingService', () => {
     });
   });
 
-  describe('mapRatesResponseToClientDtoAscending', () => {
+  describe('mapRatesResponseToClientDtoDescending', () => {
     it('should return an array of CurrencyRates sorted in descending order', () => {
       const result: ExchangeRatesDto =
-        RateMappingService.mapRatesResponseToClientDtoDescending(ratesResponse);
+        RatesMappingUtil.mapRatesResponseToClientDtoDescending(ratesResponse);
 
       expect(result.length).toBe(4);
       expect(result[0]).toStrictEqual({

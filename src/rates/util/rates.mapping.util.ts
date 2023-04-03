@@ -4,11 +4,11 @@ import {
   ExchangeRatesDto,
 } from '../dto/rate.dto';
 
-export class RateMappingService {
+export class RatesMappingUtil {
   static mapRatesResponseToClientDtoAscending(
     ratesResponse: RatesResponse,
   ): ExchangeRatesDto {
-    return RateMappingService.mapRatesResponseToClientDto(ratesResponse).sort(
+    return RatesMappingUtil.mapRatesResponseToClientDto(ratesResponse).sort(
       (a, b) => a.value - b.value,
     );
   }
@@ -16,7 +16,7 @@ export class RateMappingService {
   static mapRatesResponseToClientDtoDescending(
     ratesResponse: RatesResponse,
   ): ExchangeRatesDto {
-    return RateMappingService.mapRatesResponseToClientDto(ratesResponse).sort(
+    return RatesMappingUtil.mapRatesResponseToClientDto(ratesResponse).sort(
       (a, b) => b.value - a.value,
     );
   }

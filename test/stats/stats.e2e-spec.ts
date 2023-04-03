@@ -1,25 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { RatesModule } from '../../src/rates/rates.module';
+import { StatsModule } from '../../src/stats/stats.module';
 
-describe('RatesController (e2e)', () => {
+describe('StatsController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [RatesModule],
+      imports: [StatsModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
   });
 
-  it('/rates_ascending (GET)', () => {
-    return request(app.getHttpServer()).get('/rates_ascending').expect(200);
-  });
-
-  it('/rates_descending (GET)', () => {
-    return request(app.getHttpServer()).get('/rates_descending').expect(200);
+  it('/coin_stats/:id (GET)', () => {
+    return request(app.getHttpServer()).get('/coin_stats/test').expect(200);
   });
 });

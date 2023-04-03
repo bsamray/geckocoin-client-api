@@ -31,6 +31,7 @@
 ```bash
 $ npm install
 ```
+Edit the port and number of days of historical stats needed in .env file, if needed.
 
 ## Running the app
 
